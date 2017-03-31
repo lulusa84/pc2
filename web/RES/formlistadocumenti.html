@@ -1,0 +1,68 @@
+<html>
+<head>
+ <link href="style.css" rel="stylesheet" type="text/css" />
+ <link rel='stylesheet' href='http://mottie.github.com/tablesorter/css/theme.blue.css'>
+ <link rel='stylesheet' href='http://mottie.github.com/tablesorter/addons/pager/jquery.tablesorter.pager.css'>
+ <script src='http://mottie.github.com/tablesorter/js/jquery.tablesorter.min.js'></script>
+ <script src='http://mottie.github.com/tablesorter/addons/pager/jquery.tablesorter.pager.js'></script>
+ 
+
+</script>
+
+</head>
+<body>
+ 
+<form method="post" name="formcercadocumenti" action="Documentazione">
+  
+         <input type="text" name="chiave"/>
+	 <input type="submit" name="comando" value="cercadocumento">  
+ </form>
+    
+ <table id="Documenti" class="tablesorter-blue"> 
+       
+           <thead id="thead">
+            <tr>
+            <th>id</th>
+            <th>titolo</th>
+            <th>idautore</th>
+            <th>categoria</th>  
+            <th>vedi</th>
+            </tr>
+          </thead>
+          
+         
+         <tbody>
+            
+                <tr>
+              
+		<td>[id]</td>
+		
+		<td>[titolo]</td>
+                
+		<!--
+		<td>[anteprima]</td>
+	        -->
+                
+		<td>[idautore]</td>
+		 
+	        <td>[categoria]</td>
+                
+                 
+		<td>
+                    
+                <input type="submit" value="HTML"/>
+		    
+                <input type="submit" value="TXT"/>
+		          
+		<input type="submit" value="XML"/>
+                
+                </td>
+               
+                </tr>
+          </tbody>
+          
+        </table> 
+           
+ </body>
+  
+</html>
