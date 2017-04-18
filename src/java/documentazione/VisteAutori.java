@@ -121,7 +121,8 @@ public class VisteAutori {
 		return masterpage
 				.sostituisci("contenuto", 
 					new Vista(percorso + "/RES/formnuovoautore.html").toString())
-				   // new Vista(percorso + "\\RES\\formnuovoautore.html").toString())
+				     // new Vista(percorso + "\\RES\\formnuovoautore.html").toString())
+                                .sostituisci("contenuto2","")
 				    .toString();
 	}
 
@@ -143,7 +144,7 @@ public class VisteAutori {
 		try
 		{		 
 			v =  masterpage
-			.sostituisci("contenuto", "L'autore avente nome"+" "+ request.getParameter("nome")+" "+ "è stato cancellato");
+			.sostituisci("contenuto", "L'autore avente nome"+" "+ request.getParameter("id")+" "+ "è stato cancellato");
 				//login.getId()	
 				//percorso
 		

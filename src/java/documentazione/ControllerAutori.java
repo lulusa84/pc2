@@ -31,7 +31,8 @@ package documentazione;
 				Autori autori,
                                 HttpSession sessione,
                                 Connection connessione,                    
-			        Login login
+			        Login login,
+                                Documenti documenti
 				)
 				{
 					this.response = response;
@@ -45,7 +46,12 @@ package documentazione;
 					//Per le scritture devo passare dal modello
 					this.visteAutori = visteAutori;
 					this.autori = autori;
+                                        this.documenti=documenti;
 				}
+
+    ControllerAutori() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 		public void listaautori()
 		{
@@ -108,101 +114,102 @@ package documentazione;
              void  cancellaAutore(Connection connessione, HttpServletRequest request,
 	     HttpServletResponse response,Login login) {
              HttpSession sessione=login.sessione;
-             String email=login.getEmail();   
-             String password=login.getPassword();
              
-              //In id dovrò mettere l'id del documento da cancellare
+             
+              //In id dovrò mettere l'id dell'autore da cancellare
       
              // Leggo dalla session il livello e l'id del soggetto loggato
              
              String idutente =login.getId();
+             //String nome=request.getParameter("nome");
+             String idautore=request.getParameter("id");
              String nome=request.getParameter("nome");
-             //String idautore=null;
              String livello  =login.getLivello();
-        
+             //String id = "";
     
-             ResultSet rs = null;
-                    
-                
-                       if (login.login(email, password, connessione1)){
-                       
-                           
-                               String sql = "select * from Autori where nome=?";
-                               PreparedStatement stmt = null;
-                               
-                             try{
-                                   
-                                   stmt = connessione.prepareStatement(sql);
-                                   stmt.setString(1,nome);
-                                   stmt.execute();
-                                   rs = stmt.executeQuery();
-                                   
-                                   
-                                   
-                                   if (rs.next()){
-                                   //idautore=rs.getString("id");
-                                   if(!documenti.listaDocumentiAutore().next()) {    
-                                 
-                                       
-                                       
-                                       switch(livello)  {
+            ResultSet rs = null;
+             //ResultSet rs2 = null;      
+             boolean esito= login.getEsito();
+             
+                         if (esito == true){
+                        
                                           
-                                           case "1":
-                                               
-                                               response.getWriter().append(visteAutori.cancellaautori(request, response).toString());
-                                               autori.cancellaAutore(login, request, response, connessione, nome);
-                                               break;
-                                               
-                                               
-                                           case "2":
-                                               if(idutente.equals(idutente)) {
-                                                   
-                                                   response.getWriter().append(visteAutori.vistaGenerica("Impossibile cancellare gli Autori"));
-                                               }else{
-                                                   
-                                                   response.getWriter().append(visteAutori.vistaGenerica("Impossibile cancellare gli Autori"));
+                               //String sql = "select * from Autori where nome=?";
+                               //PreparedStatement stmt = null;
+                               
+                                try{
+                                   
+                                   //  stmt = connessione.prepareStatement(sql);
+                                   // stmt.setString(1,nome);
+                                   // stmt.execute();
+                                   // rs = stmt.executeQuery();
+                                   
+                                   
+                                   
+                                   //if (rs.next()){
+                                    //idautore=rs.getString("id");
+                                    
+                                   //}
+                                 //              
+                                   
+                     switch(livello)  {
+                                          
+                                  case "1":
+                                        rs=documenti.listaDocumentiAutore(request,response,nome);
+                                        if(rs.next()){     			      
+      		                         
+                                         response.getWriter().append(visteAutori.vistaGenerica
+                                         ("Impossibile cancellare l'Autore perche sono presenti suoi documenti in DB"));
+                                        }
+                                         else {
+                                         response.getWriter().append(visteAutori.cancellaautori(request, response).toString());
+                                         //autori.cancellaAutore(login, request, response, connessione, id);
+                                         autori.cancellaAutore(login, request, response, connessione, idautore);
                                                    
                                                }
+                                    
+                                           break;
+                                   case "2":
+                                               //if(idutente.equals(idutente)) {
+                                                   
+                                           response.getWriter().append(visteAutori.vistaGenerica("Impossibile cancellare gli Autori"));
+                                               //}else{
+                                                   
+                                                   //response.getWriter().append(visteAutori.vistaGenerica("Impossibile cancellare gli Autori"));
+                                                   
+                                               //}
                                                break;
                                                
-                                           case "3":
-                                               if(idutente.equals(idutente)) {
+                                   case "3":
+                                               //if(idutente.equals(idutente)) {
                                                    
-                                                   response.getWriter().append(visteAutori.vistaGenerica("Impossibile cancellare gli Autori"));
-                                               }else{
+                                            response.getWriter().append(visteAutori.vistaGenerica("Impossibile cancellare gli Autori"));
+                                              // }else{
                                                    
-                                                   response.getWriter().append(visteAutori.vistaGenerica("Impossibile cancellare gli Autori"));
+                                                   //response.getWriter().append(visteAutori.vistaGenerica("Impossibile cancellare gli Autori"));
                                                    
-                                               }
+                                               //}
                                                break;
                                                
-                                       }}}}
+                                       }}
                                        catch (Exception ex) {                                   
                                          ex.printStackTrace();
-                                     }                                   
+                                     }                                 
                                
                                
                                finally {
                                    
-                                   try {
+                                  try {
                                        
-                                       rs.close();
-                                       stmt.close();
+                                        rs.close();
+                                        //stmt.close();
                                        
-                                   } catch (Exception ex) {
-                                       ex.printStackTrace();
-                                       
-                                       
-                                   
-                               try {
-                                   response.getWriter().append(visteAutori.vistaGenerica("Impossibile cancellare l'Autore perche sono presenti suoi documenti in DB"));
-                                   
-                                   
-                               } catch(Exception e){
-                                   e.printStackTrace();
-                                   System.out.println(e.getMessage());
-                                   
-                              }}}}
+                                      } catch (Exception ex) {
+                                      ex.printStackTrace();
+                          
+                              }
+                              }
+                               }
                             
                            else {
                                 

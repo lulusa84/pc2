@@ -6,12 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-
-
-
 
 import javax.servlet.http.HttpSession;
 
@@ -68,8 +62,9 @@ public class ControllerDocumenti {
 		        {
 			
                         //response.getWriter().append(visteDocumenti.listadocumenti());
+                        
                         response.getWriter().append(visteDocumenti.vistalistadocumenti(" "+ login.getEmail().toUpperCase() + " " + "l'id é" +" "+ login.getId() +" "+"il livello é"+ " " + login.getLivello().toString()));
-                }
+                        }
 		catch(Exception e)
 		{
 			e.printStackTrace();			
@@ -128,7 +123,7 @@ public class ControllerDocumenti {
 	 }
 
 	
-	void  cancellaDocumento(Connection connessione, HttpServletRequest request,
+	public void  cancellaDocumento(Connection connessione, HttpServletRequest request,
 	       HttpServletResponse response,Login login)  {
 		HttpSession sessione=login.sessione;
               

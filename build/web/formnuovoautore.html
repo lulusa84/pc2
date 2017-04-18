@@ -1,0 +1,70 @@
+<!--  
+         <script>
+            function formOk() {
+                              
+                var check = document.forms["formAutore"]["nome"].value;
+                if (check=="") alert('Vuoto');
+            }
+            
+            function nonvuoto(ogg)
+            {
+                var v= ogg.value;
+                if(v=="") ogg.value="Campo obbligatorio";
+                
+            }
+            
+            function almenouno(ogg)
+            {
+                var v= ogg.value;
+                if(v==""){ogg.value=1;alert('Valore non valido per questo campo')}
+                
+            }
+        </script>
+  -->  
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  
+<body>
+  
+       <form method="post" name="formnuovoautore" action="Documentazione">
+  
+	
+	<table>
+	
+		<tr>
+		
+			<td>nome</td>
+			<td><input type="text" name="nome"/></td>
+			 
+		</tr>
+		<!--
+		<tr>
+			<td>id</td>
+			<td><input type="text" name="id"/></td>
+			<!--<form:errors path="Cognome" cssClass="error" /> 
+		</tr>
+	        -->
+		<tr>
+			<td>Email</td>
+			<td><input type="text" name="email"/></td>
+			
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><input type="text" name="password"/></td>
+			 
+			
+		</tr>
+		<tr>
+		   <td>Livello (1 utente - 2 amministratore - 3 studente)</td>
+		  <td><input type="text" name="livello"/></td>
+		   
+		</tr>
+		<tr>
+                 <td><input type="submit" name="comando" value="confermainserimentoautore"/></td>
+	         <td><input type="submit" name="comando" value="cancellautore"/></td>
+	   </tr>
+	   
+	</table>
+</form>
+
+</body>

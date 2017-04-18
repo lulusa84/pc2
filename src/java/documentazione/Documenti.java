@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 //import java.sql.Statement;
 
 
@@ -46,7 +47,7 @@ public class Documenti {
 	
 	public Documenti(Connection connessione){
 		this.connessione = connessione;
-                //this.sessione = login.sessione;
+                
 	}
         
 	
@@ -55,7 +56,7 @@ public class Documenti {
                 
 		if (titolo == null || categoria == null || contenuto == null || idautore == null 
 				|| titolo.equals("") || categoria.equals("") || contenuto.equals("")|| idautore.equals(""))
-                    //idautore.equals("")
+                    
                 {
 			return false;
 		}
@@ -173,53 +174,65 @@ public class Documenti {
 		return rs;
 	}
 
-        public ResultSet listaDocumentiAutore()
+        public ResultSet listaDocumentiAutore(HttpServletRequest request,
+	    	           
+	        HttpServletResponse response, String nome)
 	{       
-                String nome=request.getParameter("nome");
-             
-		ResultSet rs = null;
-                
-                
-                nome=request.getParameter(nome);
-                   
-			String sql = "select Documenti.id from Documenti, Autori where Autori.nome=?";
-			PreparedStatement stmt =null;
-                        try {     
-			
-		        stmt = connessione.prepareStatement(sql);                      
+                                                 // String idautore
+                 ResultSet rs = null;
+                 nome=request.getParameter("nome");
+                 String idautore=request.getParameter("id");
+                 
+                 PreparedStatement stmt = null;
+                               
+                 
+                    
+                    
+                    String sql = 
+                            //"select * from Documenti where idautore=?";
+                            //"SELECT * from Autori left join Documenti where Documenti.idautore = Autori.id and Autori.nome=?" ;
+                            "SELECT Documenti.id from Autori left join Documenti where Autori.id = Documenti.idautore and Autori.nome=?";
+                            
+  
+                    
+                      try{
+                      
+                        stmt = connessione.prepareStatement(sql);                      
                         stmt.setString(1,nome);
+                        //stmt.setString(1,idautore);
                         stmt.execute();
-			rs = stmt.executeQuery();
-			
-		        }
+                        rs = stmt.executeQuery();
                         
-                        catch (Exception e){
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-
-		        }
+                    }
+                    
+                    
+                    catch (Exception e){
+                        e.printStackTrace();
+                        System.out.println(e.getMessage());
                         
-                       
-                        finally {
+                    }
+                    
+                    
+                   // finally {
                         
-                            try {
-                                                        
-                          rs.close();
-                           stmt.close();
-                        
-                           } catch (Exception ex) {
-                          ex.printStackTrace();
-                        
-                         } 
-                           return rs;  
-                         } 
-                        
-                         
-                       } 
+                       // try {
+                            
+                            //rs.close();
+                             //stmt.close();
+                            
+                       // } catch (Exception ex) {
+                            //ex.printStackTrace();
+                            
+                        //}
+                      
+                    //}
+            return rs;
+         
+                              
+ }
         
-
         
-        public ResultSet vediDocumenti(HttpServletRequest request,
+public ResultSet vediDocumenti(HttpServletRequest request,
 	    	           
 	        HttpServletResponse response,String id){ 
             
@@ -316,6 +329,12 @@ public class Documenti {
                        return rs;
      	      
 	         }
+
+    private static class stmt {
+
+        public stmt() {
+        }
+    }
                 }
                  
             

@@ -44,7 +44,7 @@ public class VisteDocumenti {
         
 	public String vistalistadocumenti(String messaggio) 
         { 
-            
+           
             return masterpage
                                  .sostituisci("loggatocome", messaggio)
                                  .sostituisci("contenuto", listadocumenti())
@@ -173,6 +173,7 @@ public class VisteDocumenti {
 						//new Vista(percorso+"\\RES\\
                                                 //formnuovodocumento.html").
                                                 //toString())
+                                .sostituisci("contenuto2","")
 				.toString();
 	
 	}

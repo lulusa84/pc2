@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 public class Autori {
 	
 	// Variabile di istanza.
-	//private static Connection connessione = null;
-        protected Connection connessione = null;
+	
+        Connection connessione = null;
 	HttpServletRequest request;
 	HttpServletResponse response;
 	Login login;
@@ -147,29 +147,28 @@ public class Autori {
         
         public boolean cancellaAutore(Login login, HttpServletRequest request,
 	    	           
-	        HttpServletResponse response, Connection connessione, String nome){
+	        HttpServletResponse response, Connection connessione, String idautore){
 	    			
 		    boolean esito = false;
 		    ResultSet rs = null;
 		    
 		    //In idoc dovrò mettere l'id del documento da cancellare
-			
-		    nome=request.getParameter("nome");
+		    //	nome=request.getParameter("nome");
+		    idautore=request.getParameter("id");
 			
 		
 		    // se le variabili email, password, connessione sono null allora esito è uguale a FALSE	  
-	          if (nome.equals("") ||  connessione == null){
+	          if (idautore.equals("") ||  connessione == null){
 	          return false;	
 		    
 	          }else  {  
-               		          
-	        
-		    String sql = "DELETE from Autori where nome=?";
+               		        
+		    String sql = "DELETE from Autori where id=?";
 		    PreparedStatement stmt = null;
 		    try {     
 			     
 			stmt = connessione.prepareStatement(sql);
-			stmt.setString(1,nome);
+			stmt.setString(1,idautore);
 			stmt.execute();
 			rs = stmt.executeQuery();
 			
@@ -183,7 +182,7 @@ public class Autori {
 		finally {
                         
                             try {
-                            rs.close();                            
+                            //rs.close();                            
                             stmt.close();
                            
                         

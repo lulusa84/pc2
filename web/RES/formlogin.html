@@ -1,66 +1,140 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<script onblur="">
+<html>  
+<script>
 function emailOk() {
-	
-                
+var text = "";
+if
+(document.forms["formlogin"]["email"].validity.valueMissing) {
+text = "inserire email";
+document.getElementById('MIA_IMG').style.display='block';
+document.getElementById('MIA_IMG2').style.display='none';
+}else{
+
+document.getElementById('MIA_IMG2').style.display='block';
+document.getElementById('MIA_IMG').style.display='none';
+
+}
+document.getElementById("demo").innerHTML = text;
+
+}
+        /*	             
     var check = document.forms["formlogin"]["email"].value;
     
-    
     var text="";
+
      
       if (check=="") {
     	  text="inserire email";
-    	  document.getElementById("demo2").innerHTML = text;
-      
+          
+    	  document.getElementById("demo21").innerHTML = text + check;
+          document.getElementById('MIA_IMG').style.display='block';
+          document.getElementById('MIA_IMG2').style.display='none';
+          return true;
      }
       else  
       { 
-    	  text="ok";
- 	       document.getElementById("demo2").innerHTML = text ;
+    	  text="ok1";
+ 	       document.getElementById("demo21").innerHTML = text + em ;
+               document.getElementById('MIA_IMG2').style.display='block';
+               document.getElementById('MIA_IMG').style.display='none';
+             return false;  
       }   
 }
-
+*/
       
  	 function pwOk() {
- 		var text=""
- 		var check = document.forms["formlogin"]["password"].value; 			     
-            if (check=="") {
-    	     text="inserire password";
-    	     document.getElementById("demo3").innerHTML = text ;
-      
-            }
-            else { 
-    
-    	  
-      	   text="ok";
-  	       document.getElementById("demo3").innerHTML = text ;
+ 		
+ 		
+             var text="";
+               
+             if
+             (document.forms["formlogin"]["password"].validity.valueMissing) {
+             text = "inserire password";   
+             document.getElementById('MIA_IMG3').style.display='block';
+             document.getElementById('MIA_IMG4').style.display='none';
+             
+              }else{ document.getElementById('MIA_IMG4').style.display='block';
+                     document.getElementById('MIA_IMG3').style.display='none';
+                     
+              }   
+              
+              document.getElementById("demo3").innerHTML = text;
+              
+              }
+              
+             /*   
+               *var text=""; 
+               var check = document.forms["formlogin"]["password"].value; 
+               if (check == "") {
+    	       text="inserire password1";
+    	       document.getElementById("demo3").innerHTML = text  + check ;
+               document.getElementById('MIA_IMG3').style.display='block';
+               document.getElementById('MIA_IMG4').style.display='none'; 
+               return false;
+               }
+               else { 
+   	       text="ok1";
+  	       document.getElementById("demo3").innerHTML = text + check;
+               document.getElementById('MIA_IMG4').style.display='block'; 
+               document.getElementById('MIA_IMG3').style.display='none'; 
+               return true;
           }
       
          }
-
+       */
  	 
     function formato()
      {
-	   var str = document.forms["formlogin"]["email"].value;
-	   var arr = str.split("@");
-	   var text="";
-	   document.getElementById("demo").innerHTML = arr[0] +" "+ str;
-	   var image= document.getElementById("MIA_IMG");
+         var text="";
+               
+             if
+             (document.forms["formlogin"]["email"].validity.patternMismatch) {
+             text = "valore non valido";   
+             document.getElementById('MIA_IMG1').style.display='block';
+             document.getElementById('MIA_IMG21').style.display='none';
+             
+              }else{ document.getElementById('MIA_IMG21').style.display='block';
+                     document.getElementById('MIA_IMG1').style.display='none';
+                     
+              }   
+              
+              document.getElementById("demo2").innerHTML = text;
+              
+              }
+      /*
+       var str = document.forms["formlogin"]["email"].value;
+       var arr = str.split("@");
+     //var arr2 = arr[1].split(".it");
+       var text="";
+       document.getElementById("demo2").innerHTML = arr[0] +" "+ str;
+     //var image= document.getElementById("MIA_IMG");
 	
-    if(str==arr[0])  { 
-    	text="valore non valido";
-    	document.getElementById("demo2").innerHTML = text ;
+    if(str == arr[0]) { 
+    	text="valore non valido"
+        // + str + arr[0]+  arr[1] + arr2[0] + arr2[1]";
+    	document.getElementById("demo2").innerHTML = text +" "+ arr[0];
+        document.getElementById('MIA_IMG1').style.display='block';
+        document.getElementById('MIA_IMG21').style.display='none';
+        //}   
+        //else { 
+        //if(arr==arr2[0])  { 
+    	//text="valore non valido"
+        // + str + arr[0]+  arr[1] + arr2[0] + arr2[1]";
+    	//document.getElementById("demo2").innerHTML = text ;
        
-    }     
-    else { 
-    	text="ok";
-	    document.getElementById("demo2").innerHTML = text ;
-	    
-    }  	  
-}
+       }  else {   
+    	//text="ok"
+        // str + arr[0]+ arr[1] + arr2[0] + arr2[1]";
+	document.getElementById("demo2").innerHTML = text +" "+ arr[0];
+	document.getElementById('MIA_IMG21').style.display='block';   
+        document.getElementById('MIA_IMG1').style.display='none';
+    //}
+ }
+ */
+
 
 
 </script>
+
   <head>
      <style>
       #destra {
@@ -77,34 +151,43 @@ function emailOk() {
  
 <form method="post" name="formlogin" action="Documentazione">
 
-    <p id="demo"></p>
- 
-	Email <br />
+    
 	
-	<input type=text id=1 name=email onfocus="emailOk(),document.getElementById('MIA_IMG').style.display='block'" onchange="formato(),document.getElementById('MIA_IMG2').style.display='block',document.getElementById('MIA_IMG').style.display='none'"/><p id="demo2"></p>
-	<img border="0" src="/Users/sarahtarantino/Desktop/ProgettoCorso/icons/Errore.jpg" id="MIA_IMG" style="display:none" widht="20" height="20">
-	<img border="0" src="/Users/sarahtarantino/Desktop/ProgettoCorso/icons/ok-icon.jpg" id="MIA_IMG2" style="display:none" widht="20" height="20">
-	
+    Email <br />
+    <input type=email name=email  onfocus="emailOk()" oninput="formato()" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" >
+
+         
+       <!--document.getElementById('MIA_IMG').style.display='block'"-->
+	<!--oninput="formato()"-->
+           
+        <img border="0" src="Errore.jpg" id="MIA_IMG" style="display:none" widht="20" height="20">
+	<img border="0" src="ok-icon.jpg" id="MIA_IMG2" style="display:none" widht="20" height="20">
+        <p id="demo"></p>
+	<img border="0" src="Errore.jpg" id="MIA_IMG1" style="display:none" widht="20" height="20">
+	<img border="0" src="ok-icon.jpg" id="MIA_IMG21" style="display:none" widht="20" height="20">
  
-     
-   
+       
+       
+       <p id="demo2"></p>
+       
+      
+       
 	<br /><br />
 	
 	
 	Password <br /> 
 	
-	<input type=password name=password onfocus="pwOk(),document.getElementById('MIA_IMG3').style.display='block'" onchange="pwOk(),document.getElementById('MIA_IMG4').style.display='block',document.getElementById('MIA_IMG3').style.display='none'"/><p id="demo3"></p> <br />
-	<img border="0" src="/Users/sarahtarantino/Desktop/ProgettoCorso/icons/Errore.jpg" id="MIA_IMG3" style="display:none" widht="20" height="20">
-	<img border="0" src="/Users/sarahtarantino/Desktop/ProgettoCorso/icons/ok-icon.jpg" id="MIA_IMG4" style="display:none" widht="20" height="20">
-	<br /><br />
-	
+        <input type=password name=password onclick="return pwOk()" required />
+        <!--document.getElementById('MIA_IMG3').style.display='block'-->
+        
+	<img border="0" src="Errore.jpg" id="MIA_IMG3" style="display:none" widht="20" height="20">
+            
+        <img border="0" src="ok-icon.jpg" id="MIA_IMG4" style="display:none" widht="20" height="20">
+        <p id="demo3"></p> 
+        <br>
 	<input type="submit" name="comando" value="login"/>
 	 
 </form>
-    <!--
-    <div class="destra">
-	    [contenuto] 		
-    </div>
-    -->
+    
 </body>
 </html>

@@ -80,7 +80,7 @@ public class Documentazione extends HttpServlet {
                
             
 		ControllerAutori controllerAutori = 
-				new ControllerAutori(request, response, visteAutori, autori, sessione, connessione,login);
+				new ControllerAutori(request, response, visteAutori, autori, sessione, connessione,login,documenti);
 		
 		
 		LoginController2 loginController2 = new LoginController2(request,response,autori,connessione,getServletContext().getRealPath(""),sessione, visteDocumenti);
@@ -94,12 +94,6 @@ public class Documentazione extends HttpServlet {
 				
 		Vista view = null;
                 
-               // boolean logged = loginController2.login(
-						//request.getParameter("email").toString(),
-						//request.getParameter("password").toString()
-						//);
-		
-		//Login login = new Login(connessione,sessione);
 		
             switch(comando){
 		
@@ -263,8 +257,9 @@ public class Documentazione extends HttpServlet {
 			case "info":
 				response.getWriter().append(masterpage
                                         //.sostituisci("loggatocome", " "+ login.getEmail().toUpperCase() + " " + "l'id é" +" "+ login.getId() +" "+"il livello é"+ " " + login.getLivello())
-                                        .sostituisci("contenuto", "Qui ci sarà:<br />la pagina di info").toString());
-				break;
+                                        .sostituisci("contenuto", "Qui ci sarà<br/>la pagina di info")
+                                        .sostituisci("contenuto2", "").toString());
+				break; 
 		}
 	}
 
