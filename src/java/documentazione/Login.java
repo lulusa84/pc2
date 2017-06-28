@@ -32,13 +32,13 @@ public class Login {
 	    //Livello dell'utente loggato
 		
 	    public String getLivello()
-	    {   Object livello="4";
+	    {   Object livello="0";
 	    	 
 	          if(sessione != null){
                       livello = sessione.getAttribute("livello").toString();
 	      	      return livello.toString();
 	         } else {
-			  return "4";
+			  return "0";
 	         
 	    }
 	   }
